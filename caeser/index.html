@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROT13 CIPHER</title>
+</head>
+<body>
+    <main>
+        <input type="text" name="pali" id="pali" placeholder="text for a cipher">
+        <button>cipher</button>
+
+        <p></p>
+    </main>
+</body>
+
+<script>
+    const btn =  document.querySelector('button')
+    const input = document.querySelector('input')
+    const para = document.querySelector('p')
+
+    const cipher = () => {
+        let val = (input.value).toUpperCase()
+        val = val.split('')
+        //create an empty array
+        let arr = []
+        //create an array of A-M and N-Z
+        let str1 = 'ABCDEFGHIJKLM'
+        let str2 = 'NOPQRSTUVWXYZ'
+        //loop through each character in the input text to test if each character exist in either str1 or str2
+        //if it matches, check if the character exist in any of the loop, and return the equivalent in either into the array
+        //if it does not match either, return the number into the array
+        val.map(x => (
+            str1.includes(x) ? arr.push(str2[str1.indexOf(x)]) : str2.includes(x) ? arr.push(str1[str2.indexOf(x)]): arr.push(x)
+            
+        ))
+
+        para.innerText = arr.join('')
+    }
+
+    btn.addEventListener('click', cipher)
+</script>
+</html>
